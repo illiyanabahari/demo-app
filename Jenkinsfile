@@ -19,11 +19,11 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
-                bat "copy /Y target\\demo-app-0.0.1-SNAPSHOT.war C:\\apache-tomcat-10.1.42\\webapps\\demo-app.war"
-            }
-        }
+      stage('Deploy') {
+    steps {
+        bat "copy /Y target\\demo-app-0.0.1-SNAPSHOT.war D:\\apache-tomcat-10.1.42\\webapps\\demo-app.war"
+    }
+}
     }
 
     post {
