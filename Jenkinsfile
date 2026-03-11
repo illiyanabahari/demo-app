@@ -2,19 +2,14 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven3'   // Your Jenkins Maven name
-        jdk 'Java17'     // Your Jenkins JDK name
-    }
-
-    environment {
-        TOMCAT_HOME = 'C:\\apache-tomcat-10'
-        WAR_NAME = 'demo-app.war'
+        maven 'Maven3'   
+        jdk 'Java17'     
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git(branch: 'main', url: 'https://github.com/illiyanabahari/demo-app.git')
+                git branch: 'main', url: 'https://github.com/illiyanabahari/demo-app.git'
             }
         }
 
@@ -26,7 +21,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                bat "copy /Y target\\${env.WAR_NAME} ${env.TOMCAT_HOME}\\webapps\\${env.WAR_NAME}"
+                bat "copy /Y target\\demo-app.war C:\\apache-tomcat-10\\webapps\\demo-app.war"
             }
         }
     }
