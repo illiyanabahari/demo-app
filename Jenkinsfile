@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven3'   // Your Jenkins Maven name
+        jdk 'Java17'     // Your Jenkins JDK name
+    }
+
     environment {
         TOMCAT_HOME = 'C:\\apache-tomcat-10'
         WAR_NAME = 'demo-app.war'
@@ -21,7 +26,6 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // Hot deploy WAR to Tomcat
                 bat "copy /Y target\\${env.WAR_NAME} ${env.TOMCAT_HOME}\\webapps\\${env.WAR_NAME}"
             }
         }
